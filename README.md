@@ -1,4 +1,38 @@
-[![Build Status](https://travis-ci.org/esteban-uo/picasa.svg)](https://travis-ci.org/esteban-uo/picasa)
+# Fork - for the browser (using Fetch api)
+
+Optional: to use [your own CORS proxy](https://github.com/Rob--W/cors-anywhere): add before `new Picasa()`:
+
+```
+window.CORSPROXY = 'https://my-proxy.com'
+```
+
+Fork from: [https://github.com/esteban-uo/picasa](https://github.com/esteban-uo/picasa)
+
+## Use using a token from the Google Javascript API:
+
+```
+window.CORSPROXY = 'https://cors-ams.upload-pictures.net'
+
+const Picasa = require('picasa')
+const picasa = new Picasa()
+
+window.gapi.load('auth2', () => {
+    window.gapi.auth2.init(this.gSignInParams).then((gauth) => {
+        if (gauth.isSignedIn.get()) {
+            console.log('Logged In')
+
+            picasa.getAlbums(window.gapi.client.getToken().access_token, null, (error, albums) => {
+                if (error) return
+                console.log(albums)
+            })
+        } else {
+            console.log('Not logged in')
+        }
+    })
+})
+```
+
+---
 
 A simple **Google Photos**, formally **Picasa** Web Albums client (2.0) for nodejs (>= 4.8.7). Includes Auth helpers.
 

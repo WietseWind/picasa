@@ -1,9 +1,8 @@
 'use strict'
 
 const querystring = require('querystring')
-
+const executeRequest = require('./executeRequestFetch')
 const promisify = require('./promisify')
-const executeRequest = require('./executeRequest')
 
 const GOOGLE_AUTH_ENDPOINT = 'https://accounts.google.com/o/oauth2/auth'
 const GOOGLE_API_HOST = 'https://www.googleapis.com'
